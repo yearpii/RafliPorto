@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arpii — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">Arpii</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="canvas.html">Canvas</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<div class="sidebar-palette" id="sidebarPalette">
+  <div class="palette-dot active" style="background:#4f8ef7" title="Blue" onclick="setAccent('#4f8ef7', this)"></div>
+  <div class="palette-dot" style="background:#9b6bff" title="Purple" onclick="setAccent('#9b6bff', this)"></div>
+  <div class="palette-dot" style="background:#f46e6e" title="Red" onclick="setAccent('#f46e6e', this)"></div>
+  <div class="palette-dot special" title="Open Canvas" onclick="window.location.href='canvas.html'">🎨</div>
+</div>
+
+<section id="home">
+  <div class="polaroid-stack" id="polaroidEl">
+    <div class="polaroid-back"></div>
+    <div class="polaroid-front">
+      <div class="polaroid-photo">👨‍💻</div>
+      <div class="polaroid-label">Arpii.jpg</div>
+    </div>
+    <div class="camera-icon">📷</div>
+    <div class="badge badge-red">Front-End Developer</div>
+    <div class="badge badge-blue">Mobile Developer</div>
+  </div>
+
+  <div class="hero-text">
+    <h1 class="hero-greeting">Hi. I'm Rafli ✨</h1>
+    <p class="hero-sub">Website & Mobile Developer ✨</p>
+    <p class="hero-links">
+      Checkout my <a href="#portfolio">past works</a> or learn more <a href="about.html">about me</a>.
+    </p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn btn-primary">View Work</a>
+      <a href="canvas.html" class="btn btn-ghost">Try Canvas</a>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <h2 class="section-title">Portfolio</h2>
+  <div class="portfolio-grid">
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a2a4a,#0d1b2e)">🌐</div>
+      <div class="project-info">
+        <div class="project-title">E-Commerce Platform</div>
+        <div class="project-desc">Full-stack web app dengan React & Node.js, payment gateway terintegrasi.</div>
+        <div class="project-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span></div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a2a1a,#0d2b0d)">📱</div>
+      <div class="project-info">
+        <div class="project-title">Mobile Finance App</div>
+        <div class="project-desc">Aplikasi keuangan Flutter untuk tracking pengeluaran harian dengan visualisasi data.</div>
+        <div class="project-tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Firebase</span></div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#2a1a3a,#1a0d2e)">🤖</div>
+      <div class="project-info">
+        <div class="project-title">AI Chat Dashboard</div>
+        <div class="project-desc">Dashboard admin dengan integrasi AI untuk analisis konten dan otomasi tugas.</div>
+        <div class="project-tags"><span class="tag">Next.js</span><span class="tag">OpenAI</span><span class="tag">Tailwind</span></div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#2a1a1a,#2e1a0d)">🎮</div>
+      <div class="project-info">
+        <div class="project-title">Game Portal</div>
+        <div class="project-desc">Platform game browser dengan leaderboard real-time dan sistem reward.</div>
+        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">Socket.io</span><span class="tag">PostgreSQL</span></div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a2a2a,#0d2b2a)">🏥</div>
+      <div class="project-info">
+        <div class="project-title">Health Tracker</div>
+        <div class="project-desc">Aplikasi kesehatan dengan reminder obat, tracking tidur, dan BMI calculator.</div>
+        <div class="project-tags"><span class="tag">React Native</span><span class="tag">Redux</span></div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#2a2a1a,#2b2b0d)">📊</div>
+      <div class="project-info">
+        <div class="project-title">Analytics Dashboard</div>
+        <div class="project-desc">Dashboard analytics dengan chart interaktif, filter dinamis, dan export PDF.</div>
+        <div class="project-tags"><span class="tag">Vue</span><span class="tag">Chart.js</span><span class="tag">Laravel</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>Copyright © 2025 — All Right Reserved by Arpii.</footer>
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

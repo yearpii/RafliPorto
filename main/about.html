@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arpii — About</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="nav-logo">Arpii</a>
+  <ul class="nav-links">
+    <li><a href="portfolio.html">Home</a></li>
+    <li><a href="portfolio.html#portfolio">Portfolio</a></li>
+    <li><a href="canvas.html">Canvas</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<div class="sidebar-palette" id="sidebarPalette">
+  <div class="palette-dot active" style="background:#4f8ef7" title="Blue" onclick="setAccent('#4f8ef7', this)"></div>
+  <div class="palette-dot" style="background:#9b6bff" title="Purple" onclick="setAccent('#9b6bff', this)"></div>
+  <div class="palette-dot" style="background:#f46e6e" title="Red" onclick="setAccent('#f46e6e', this)"></div>
+  <div class="palette-dot special" title="Open Canvas" onclick="window.location.href='canvas.html'">🎨</div>
+</div>
+
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>Halo! Saya <strong>Rafli</strong>, seorang Front-End & Mobile Developer yang passionate dalam membangun pengalaman digital yang indah dan fungsional.</p>
+      <p>Dengan pengalaman lebih dari 3 tahun, saya telah mengerjakan berbagai proyek mulai dari aplikasi e-commerce, dashboard analytics, hingga aplikasi mobile cross-platform.</p>
+      <p>Saya percaya bahwa kode yang baik bukan hanya yang berfungsi, tapi juga yang elegan, mudah dibaca, dan dapat di-maintain dengan baik.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box"><div class="stat-num">30+</div><div class="stat-desc">Projects Completed</div></div>
+      <div class="stat-box"><div class="stat-num">3+</div><div class="stat-desc">Years Experience</div></div>
+      <div class="stat-box"><div class="stat-num">15+</div><div class="stat-desc">Happy Clients</div></div>
+      <div class="stat-box"><div class="stat-num">8+</div><div class="stat-desc">Technologies</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>Copyright © 2025 — All Right Reserved by Arpii.</footer>
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

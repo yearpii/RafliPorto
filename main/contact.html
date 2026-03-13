@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arpii — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="nav-logo">Arpii</a>
+  <ul class="nav-links">
+    <li><a href="portfolio.html">Home</a></li>
+    <li><a href="portfolio.html#portfolio">Portfolio</a></li>
+    <li><a href="canvas.html">Canvas</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<div class="sidebar-palette" id="sidebarPalette">
+  <div class="palette-dot active" style="background:#4f8ef7" title="Blue" onclick="setAccent('#4f8ef7', this)"></div>
+  <div class="palette-dot" style="background:#9b6bff" title="Purple" onclick="setAccent('#9b6bff', this)"></div>
+  <div class="palette-dot" style="background:#f46e6e" title="Red" onclick="setAccent('#f46e6e', this)"></div>
+  <div class="palette-dot special" title="Open Canvas" onclick="window.location.href='canvas.html'">🎨</div>
+</div>
+
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-links">
+      <a href="#" class="contact-link"><span class="contact-link-icon">📧</span><div><div class="contact-link-label">Email</div><div class="contact-link-value">Rafli@Arpii.dev</div></div></a>
+      <a href="#" class="contact-link"><span class="contact-link-icon">💼</span><div><div class="contact-link-label">LinkedIn</div><div class="contact-link-value">linkedin.com/in/Arpii</div></div></a>
+      <a href="#" class="contact-link"><span class="contact-link-icon">🐙</span><div><div class="contact-link-label">GitHub</div><div class="contact-link-value">github.com/Arpii</div></div></a>
+      <a href="#" class="contact-link"><span class="contact-link-icon">🐦</span><div><div class="contact-link-label">Twitter / X</div><div class="contact-link-value">@Arpii</div></div></a>
+    </div>
+    <div class="contact-form">
+      <input type="text" class="form-input" placeholder="Nama kamu">
+      <input type="email" class="form-input" placeholder="Email kamu">
+      <textarea class="form-textarea" placeholder="Pesan kamu..."></textarea>
+      <button class="btn btn-primary" style="align-self:flex-start" onclick="alert('Pesan terkirim! ✅')">Kirim Pesan 🚀</button>
+    </div>
+  </div>
+</section>
+
+<footer>Copyright © 2025 — All Right Reserved by Arpii.</footer>
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

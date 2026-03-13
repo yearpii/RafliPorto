@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arpii — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">Arpii</a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active" onclick="setActive(this)">Home</a></li>
+    <li><a href="#achievements" onclick="setActive(this)">Achievements</a></li>
+    <li><a href="#canvas-section" onclick="setActive(this)">Canvas</a></li>
+    <li><a href="#about" onclick="setActive(this)">About</a></li>
+    <li><a href="#contact" onclick="setActive(this)">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<div class="sidebar-palette" id="sidebarPalette">
+  <div class="palette-dot active" style="background:#4f8ef7" title="Blue" onclick="setAccent('#4f8ef7', this)"></div>
+  <div class="palette-dot" style="background:#9b6bff" title="Purple" onclick="setAccent('#9b6bff', this)"></div>
+  <div class="palette-dot" style="background:#f46e6e" title="Red" onclick="setAccent('#f46e6e', this)"></div>
+  <div class="palette-dot special" title="Open Canvas" onclick="openCanvas()"></div>
+</div>
+
+<section id="home">
+  <div class="polaroid-stack" id="polaroidEl">
+    <div class="polaroid-back"></div>
+    <div class="polaroid-front">
+      <div class="polaroid-photo">👨‍💻</div>
+      <div class="polaroid-label">Arpii.jpg</div>
+    </div>
+    <div class="camera-icon">📷</div>
+    <div class="badge badge-red">Front-End Developer</div>
+    <div class="badge badge-blue">Mobile Developer</div>
+  </div>
+
+  <div class="hero-text">
+    <h1 class="hero-greeting">Hi. I'm Rafli ✨</h1>
+    <p class="hero-sub">Website & Mobile Developer ✨</p>
+    <p class="hero-links">
+      Checkout my <a href="#achievements">achievements</a> or learn more <a href="#about">about me</a>.
+    </p>
+    <div class="hero-cta">
+      <a href="#achievements" class="btn btn-primary">View Work</a>
+      <a href="#canvas-section" class="btn btn-ghost">Try Canvas</a>
+    </div>
+  </div>
+</section>
+
+<section id="canvas-section">
+  <h2 class="section-title">🎨 Canvas — Draw Anything</h2>
+  <div class="canvas-wrapper">
+    <div class="canvas-toolbar">
+
+      <div class="toolbar-group">
+        <button class="tool-btn active" id="toolPen" onclick="setTool('pen', this)">✏️ Pen</button>
+        <button class="tool-btn" id="toolBrush" onclick="setTool('brush', this)">🖌️ Brush</button>
+        <button class="tool-btn" id="toolEraser" onclick="setTool('eraser', this)">🧹 Eraser</button>
+        <button class="tool-btn" id="toolLine" onclick="setTool('line', this)">📏 Line</button>
+        <button class="tool-btn" id="toolRect" onclick="setTool('rect', this)">⬜ Rect</button>
+        <button class="tool-btn" id="toolCircle" onclick="setTool('circle', this)">⭕ Circle</button>
+      </div>
+
+
+      <div class="toolbar-group">
+        <div class="color-swatch selected" style="background:#ffffff" onclick="setColor('#ffffff', this)"></div>
+        <div class="color-swatch" style="background:#4f8ef7" onclick="setColor('#4f8ef7', this)"></div>
+        <div class="color-swatch" style="background:#f46e6e" onclick="setColor('#f46e6e', this)"></div>
+        <div class="color-swatch" style="background:#4ecb71" onclick="setColor('#4ecb71', this)"></div>
+        <div class="color-swatch" style="background:#f7c948" onclick="setColor('#f7c948', this)"></div>
+        <div class="color-swatch" style="background:#9b6bff" onclick="setColor('#9b6bff', this)"></div>
+        <div class="color-swatch" style="background:#ff9a3c" onclick="setColor('#ff9a3c', this)"></div>
+        <label style="cursor:pointer" title="Custom color">
+          <div class="color-swatch" style="background: conic-gradient(red,yellow,lime,cyan,blue,magenta,red)"></div>
+          <input type="color" class="color-input" id="colorPicker" oninput="setColor(this.value, null)">
+        </label>
+      </div>
+
+
+      <div class="toolbar-group">
+        <span style="font-size:0.8rem;color:var(--muted)">Size</span>
+        <input type="range" class="size-slider" id="brushSize" min="1" max="40" value="4" oninput="updateSize(this.value)">
+        <span class="size-label" id="sizeLabel">4px</span>
+      </div>
+
+
+      <div class="toolbar-group">
+        <span style="font-size:0.8rem;color:var(--muted)">Opacity</span>
+        <input type="range" class="size-slider" id="opacitySlider" min="10" max="100" value="100" oninput="updateOpacity(this.value)">
+        <span class="size-label" id="opacityLabel">100%</span>
+      </div>
+
+
+      <div class="toolbar-group">
+        <button class="tool-btn" onclick="setCanvasBg('#16161a')" title="Dark bg">🌑</button>
+        <button class="tool-btn" onclick="setCanvasBg('#ffffff')" title="White bg">⬜</button>
+        <button class="tool-btn" onclick="setCanvasBg('#1a2a1a')" title="Green bg">🌿</button>
+      </div>
+    </div>
+
+    <canvas id="drawCanvas"></canvas>
+
+    <div class="canvas-footer">
+      <button class="tool-btn" onclick="undoCanvas()">↩️ Undo</button>
+      <button class="tool-btn" onclick="clearCanvas()">🗑️ Clear</button>
+      <button class="tool-btn" onclick="downloadCanvas()">💾 Download</button>
+      <button class="btn btn-primary" onclick="openCanvas()">⛶ Fullscreen</button>
+    </div>
+  </div>
+</section>
+
+
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>Halo! Saya <strong>Rafli Aryadika</strong>, mahasiswa Teknik Informatika di <strong>Universitas Bhayangkara Jakarta Raya</strong> dengan minat pada web development dan teknologi informasi. Saya senang mempelajari serta membangun aplikasi dan sistem yang dapat membantu menyelesaikan berbagai permasalahan secara digital.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box"><div class="stat-num">30+</div><div class="stat-desc">Projects Completed</div></div>
+      <div class="stat-box"><div class="stat-num">3+</div><div class="stat-desc">Years Experience</div></div>
+      <div class="stat-box"><div class="stat-num">15+</div><div class="stat-desc">Happy Clients</div></div>
+      <div class="stat-box"><div class="stat-num">8+</div><div class="stat-desc">Technologies</div></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-links">
+      <a href="#" class="contact-link"><span class="contact-link-icon">📧</span><div><div class="contact-link-label">Email</div><div class="contact-link-value">Rafli@Arpii.dev</div></div></a>
+      <a href="#" class="contact-link"><span class="contact-link-icon">💼</span><div><div class="contact-link-label">LinkedIn</div><div class="contact-link-value">linkedin.com/in/Arpii</div></div></a>
+      <a href="#" class="contact-link"><span class="contact-link-icon">🐙</span><div><div class="contact-link-label">GitHub</div><div class="contact-link-value">github.com/Arpii</div></div></a>
+      <a href="#" class="contact-link"><span class="contact-link-icon">🐦</span><div><div class="contact-link-label">Twitter / X</div><div class="contact-link-value">@Arpii</div></div></a>
+    </div>
+    <div class="contact-form">
+      <input type="text" class="form-input" placeholder="Nama kamu">
+      <input type="email" class="form-input" placeholder="Email kamu">
+      <textarea class="form-textarea" placeholder="Pesan kamu..."></textarea>
+      <button class="btn btn-primary" style="align-self:flex-start" onclick="alert('Pesan terkirim! ✅')">Kirim Pesan 🚀</button>
+    </div>
+  </div>
+</section>
+
+<footer>Copyright © 2025 — All Right Reserved by Arpii.</footer>
+
+
+<div id="canvasModal">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <span class="modal-title">🎨 Canvas Fullscreen</span>
+      <button class="close-btn" onclick="closeCanvas()">✕</button>
+    </div>
+    <canvas id="drawCanvasFull" style="width:100%;height:500px;border-radius:10px;cursor:crosshair;background:#16161a;display:block;touch-action:none;"></canvas>
+    <div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end">
+      <button class="tool-btn" onclick="clearFullCanvas()">🗑️ Clear</button>
+      <button class="btn btn-primary" onclick="downloadFullCanvas()">💾 Download</button>
+    </div>
+  </div>
+</div>
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
