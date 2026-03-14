@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arpii — Canvas</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Arpii - 202410715061</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="achievements.html">Achievements</a></li>
+    <li><a href="canvas.html" class="active">Canvas</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<div class="sidebar-palette" id="sidebarPalette">
+  <div class="palette-dot active" style="background:#4f8ef7" title="Blue" onclick="setAccent('#4f8ef7', this)"></div>
+  <div class="palette-dot" style="background:#9b6bff" title="Purple" onclick="setAccent('#9b6bff', this)"></div>
+  <div class="palette-dot" style="background:#f46e6e" title="Red" onclick="setAccent('#f46e6e', this)"></div>
+  <div class="palette-dot special" title="Open Canvas" onclick="openCanvas()">🎨</div>
+</div>
+
+<section id="canvas-section">
+  <h2 class="section-title">🎨 Canvas — Draw Anything</h2>
+  <div class="canvas-wrapper">
+    <div class="canvas-toolbar">
+
+      <div class="toolbar-group">
+        <button class="tool-btn active" id="toolPen" onclick="setTool('pen', this)">✏️ Pen</button>
+        <button class="tool-btn" id="toolBrush" onclick="setTool('brush', this)">🖌️ Brush</button>
+        <button class="tool-btn" id="toolEraser" onclick="setTool('eraser', this)">🧹 Eraser</button>
+        <button class="tool-btn" id="toolLine" onclick="setTool('line', this)">📏 Line</button>
+        <button class="tool-btn" id="toolRect" onclick="setTool('rect', this)">⬜ Rect</button>
+        <button class="tool-btn" id="toolCircle" onclick="setTool('circle', this)">⭕ Circle</button>
+      </div>
+
+
+      <div class="toolbar-group">
+        <div class="color-swatch selected" style="background:#ffffff" onclick="setColor('#ffffff', this)"></div>
+        <div class="color-swatch" style="background:#4f8ef7" onclick="setColor('#4f8ef7', this)"></div>
+        <div class="color-swatch" style="background:#f46e6e" onclick="setColor('#f46e6e', this)"></div>
+        <div class="color-swatch" style="background:#4ecb71" onclick="setColor('#4ecb71', this)"></div>
+        <div class="color-swatch" style="background:#f7c948" onclick="setColor('#f7c948', this)"></div>
+        <div class="color-swatch" style="background:#9b6bff" onclick="setColor('#9b6bff', this)"></div>
+        <div class="color-swatch" style="background:#ff9a3c" onclick="setColor('#ff9a3c', this)"></div>
+        <label style="cursor:pointer" title="Custom color">
+          <div class="color-swatch" style="background: conic-gradient(red,yellow,lime,cyan,blue,magenta,red)"></div>
+          <input type="color" class="color-input" id="colorPicker" oninput="setColor(this.value, null)">
+        </label>
+      </div>
+
+
+      <div class="toolbar-group">
+        <span style="font-size:0.8rem;color:var(--muted)">Size</span>
+        <input type="range" class="size-slider" id="brushSize" min="1" max="40" value="4" oninput="updateSize(this.value)">
+        <span class="size-label" id="sizeLabel">4px</span>
+      </div>
+
+
+      <div class="toolbar-group">
+        <span style="font-size:0.8rem;color:var(--muted)">Opacity</span>
+        <input type="range" class="size-slider" id="opacitySlider" min="10" max="100" value="100" oninput="updateOpacity(this.value)">
+        <span class="size-label" id="opacityLabel">100%</span>
+      </div>
+
+
+      <div class="toolbar-group">
+        <button class="tool-btn" onclick="setCanvasBg('#16161a')" title="Dark bg">🌑</button>
+        <button class="tool-btn" onclick="setCanvasBg('#ffffff')" title="White bg">⬜</button>
+        <button class="tool-btn" onclick="setCanvasBg('#1a2a1a')" title="Green bg">🌿</button>
+      </div>
+    </div>
+
+    <canvas id="drawCanvas"></canvas>
+
+    <div class="canvas-footer">
+      <button class="tool-btn" onclick="undoCanvas()">↩️ Undo</button>
+      <button class="tool-btn" onclick="clearCanvas()">🗑️ Clear</button>
+      <button class="tool-btn" onclick="downloadCanvas()">💾 Download</button>
+      <button class="btn btn-primary" onclick="openCanvas()">⛶ Fullscreen</button>
+    </div>
+  </div>
+</section>
+
+
+<footer>Copyright © 2025 — All Right Reserved by Arpii.</footer>
+
+<div id="canvasModal">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <span class="modal-title">🎨 Canvas Fullscreen</span>
+      <button class="close-btn" onclick="closeCanvas()">✕</button>
+    </div>
+    <canvas id="drawCanvasFull" style="width:100%;height:500px;border-radius:10px;cursor:crosshair;background:#16161a;display:block;touch-action:none;"></canvas>
+    <div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end">
+      <button class="tool-btn" onclick="clearFullCanvas()">🗑️ Clear</button>
+      <button class="btn btn-primary" onclick="downloadFullCanvas()">💾 Download</button>
+    </div>
+  </div>
+</div>
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <div id="pageTransition">
+    <img src="img/oia-uia.gif"
+      class="transition-gif"
+      alt="Loading animation"
+      title="Page loading">
+  </div>
+
+<script src="script.js" deffer></script>
+</body>
+</html>
