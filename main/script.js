@@ -42,6 +42,9 @@ function toggleTheme() {
 
 // ==================== POLAROID DRAG ====================
 const polaroidEl = document.getElementById('polaroidEl');
+
+if (polaroidEl) {
+
 let isDragging = false, startX, startY, currentX = 0, currentY = 0;
 
 polaroidEl.addEventListener('mousedown', e => {
@@ -64,6 +67,8 @@ document.addEventListener('mouseup', () => {
   polaroidEl.style.cursor = 'grab';
 });
 
+}
+
 // ==================== CANVAS ENGINE ====================
 let activeTool = 'pen';
 let drawColor = '#ffffff';
@@ -76,7 +81,11 @@ let history = [];
 let historyIndex = -1;
 
 const canvas = document.getElementById('drawCanvas');
-const ctx = canvas.getContext('2d');
+let ctx = null;
+
+if (canvas) {
+  ctx = canvas.getContext('2d');
+}
 
 function resizeCanvas() {
   const rect = canvas.getBoundingClientRect();
@@ -95,13 +104,17 @@ function initCanvas(c, ct) {
 }
 
 window.addEventListener('load', () => {
-  initCanvas(canvas, ctx);
-  saveHistory();
+  if (canvas) {
+    initCanvas(canvas, ctx);
+    saveHistory();
+  }
 });
 
 window.addEventListener('resize', () => {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
+  if (canvas) {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
 });
 
 function getPos(e, c) {
@@ -168,6 +181,7 @@ function endDraw(e) {
   e.preventDefault();
 }
 
+if (canvas) {
 canvas.addEventListener('mousedown', startDraw);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', endDraw);
@@ -175,6 +189,7 @@ canvas.addEventListener('mouseleave', endDraw);
 canvas.addEventListener('touchstart', startDraw, { passive: false });
 canvas.addEventListener('touchmove', draw, { passive: false });
 canvas.addEventListener('touchend', endDraw, { passive: false });
+}
 
 function saveHistory() {
   historyIndex++;
@@ -302,3 +317,23 @@ function downloadFullCanvas() {
   link.href = fCanvas.toDataURL();
   link.click();
 }
+
+// ==================== PAGE TRANSITION ====================
+const transition = document.getElementById("pageTransition");
+
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e) {
+    const href = this.getAttribute("href");
+    if (!href) return;
+    if (href.startsWith("#")) return;
+    if (this.target === "_blank") return;
+    const sameOrigin = !this.hostname || this.hostname === window.location.hostname;
+    if (sameOrigin) {
+      e.preventDefault();
+      transition.classList.add("active");
+      setTimeout(() => {
+        window.location.href = href;
+      }, 700);
+    }
+  });
+});

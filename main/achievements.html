@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Achievements – Arpii</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav>
-  <a href="#" class="nav-logo">Arpiistar</a>
+  <a href="index.html" class="nav-logo">Arpii - 202410715061</a>
   <ul class="nav-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Portofolio</a></li>
-    <li><a href="#" class="active">Achievements</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="achievements.html" class="active">Achievements</a></li>
+    <li><a href="canvas.html">Canvas</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <span class="nav-icon" id="themeToggle">☀️</span>
 </nav>
@@ -38,7 +38,7 @@
       </div>
       <div class="card">
         <div class="card-meta">
-          <span class="card-name">Bintang</span>
+          <span class="card-name">Rafli</span>
           <span class="card-date">Juni 2025 – Juni 2027</span>
         </div>
         <div class="card-title">Uji Kompetensi Pengembang Web</div>
@@ -60,7 +60,7 @@
       </div>
       <div class="card">
         <div class="card-meta">
-          <span class="card-name">Bintang</span>
+          <span class="card-name">Rafli</span>
           <span class="card-date">Desember 2024</span>
         </div>
         <div class="card-title">Sertifikat Magang Front-End Developer di PT. Otak Kanan</div>
@@ -78,7 +78,7 @@
       </div>
       <div class="card">
         <div class="card-meta">
-          <span class="card-name">Bintang</span>
+          <span class="card-name">Rafli</span>
           <span class="card-date">Agustus 2024</span>
         </div>
         <div class="card-title">Dicoding – Belajar Membuat Front-End Web untuk Pemula</div>
@@ -100,56 +100,13 @@
   <img id="lightboxImg" src="" alt="Certificate" />
 </div>
 
-<script>
-  // Lightbox
-  function openLightbox(wrap) {
-    const img = wrap.querySelector('img');
-    document.getElementById('lightboxImg').src = img.src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+  <div id="pageTransition">
+    <img src="img/oia-uia.gif"
+      class="transition-gif"
+      alt="Loading animation"
+      title="Page loading">
+  </div>
 
-  function closeLightbox(e) {
-    if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  // Escape key closes lightbox
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLightbox();
-  });
-
-  // Theme toggle (fun extra)
-  const toggle = document.getElementById('themeToggle');
-  let light = false;
-  toggle.addEventListener('click', () => {
-    light = !light;
-    document.documentElement.style.setProperty('--bg', light ? '#f5f5f7' : '#0d0d0f');
-    document.documentElement.style.setProperty('--surface', light ? '#fff' : '#141416');
-    document.documentElement.style.setProperty('--border', light ? '#e0e0e6' : '#232328');
-    document.documentElement.style.setProperty('--text', light ? '#111' : '#e8e8ec');
-    document.documentElement.style.setProperty('--muted', light ? '#888' : '#6b6b75');
-    document.documentElement.style.setProperty('--tag-bg', light ? '#f0f0f5' : '#1c1c22');
-    document.documentElement.style.setProperty('--tag-border', light ? '#d8d8e0' : '#2e2e38');
-    toggle.textContent = light ? '🌙' : '☀️';
-  });
-
-  // Scroll-reveal observer
-  const items = document.querySelectorAll('.achievement-item');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  items.forEach(el => {
-    el.style.animationPlayState = 'paused';
-    observer.observe(el);
-  });
-</script>
+<script src="script2.js"></script>
 </body>
 </html>

@@ -25,8 +25,11 @@ body {
 
 /* NAV */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
+  position: fixed; 
+  top: 0; left: 0; right: 0; 
+  z-index: 100;
+  display: flex; 
+  align-items: center; justify-content: space-between;
   padding: 18px 40px;
   background: rgba(17,17,19,0.85);
   backdrop-filter: blur(12px);
@@ -40,7 +43,11 @@ nav {
   text-decoration: none;
 }
 
-.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
 
 .nav-links a {
   color: var(--muted);
@@ -51,10 +58,15 @@ nav {
   position: relative;
 }
 
-.nav-links a.active { color: var(--accent-blue); }
+.nav-links a.active { 
+  color: var(--accent-blue); }
+
 .nav-links a.active::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 2px; background: var(--accent-blue); border-radius: 2px;
+  content: ''; 
+  position: absolute; 
+  bottom: -4px; left: 0; right: 0;
+  height: 2px; background: var(--accent-blue); 
+  border-radius: 2px;
 }
 
 .nav-links a:hover { color: var(--text); }
@@ -129,6 +141,14 @@ nav {
   overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   font-size: 4rem;
+}
+
+.polaroid-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:contrast(1.05) brightness(1.05);
 }
 
 .polaroid-label {
@@ -463,4 +483,49 @@ footer {
   section { padding: 60px 24px; }
   nav { padding: 16px 24px; }
   .nav-links { gap: 20px; }
+}
+
+/* ==================== PAGE TRANSITION ==================== */
+
+/* Panel default MENUTUPI layar, langsung auto-slide keluar via CSS.
+   Tidak ada jeda JS → tidak ada blink. */
+#pageTransition {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: #2b0047;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transform: translateY(0%);
+  animation: pageSlideOut 0.65s cubic-bezier(0.76, 0, 0.24, 1) 0.05s forwards;
+  pointer-events: none;
+}
+
+/* Saat klik link → reset posisi ke bawah, lalu naik menutupi layar */
+#pageTransition.active {
+  transform: translateY(100%);
+  animation: pageSlideIn 0.55s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  pointer-events: all;
+}
+
+@keyframes pageSlideIn {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0%); }
+}
+
+@keyframes pageSlideOut {
+  from { transform: translateY(0%); }
+  to   { transform: translateY(-100%); }
+}
+
+.transition-gif {
+  width: 120px;
+  animation: gifBounce 0.6s ease infinite alternate;
+}
+
+@keyframes gifBounce {
+  from { transform: scale(0.95); }
+  to   { transform: scale(1.05); }
 }
