@@ -1,22 +1,36 @@
-// ==================== NAV ====================
 function setActive(el) {
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   el.classList.add('active');
 }
 
+function toggleNav() {
+  document.getElementById('navLinks')?.classList.toggle('open');
+  document.getElementById('hamburger')?.classList.toggle('open');
+}
+
+const _hs = document.createElement('style');
+_hs.textContent = '.hamburger { display: none; }';
+document.head.appendChild(_hs);
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks')?.classList.remove('open');
+      document.getElementById('hamburger')?.classList.remove('open');
+    });
+  });
+});
 window.addEventListener('scroll', () => {
   const btn = document.getElementById('scrollTopBtn');
   btn.classList.toggle('visible', window.scrollY > 400);
 });
 
-// ==================== ACCENT ====================
 function setAccent(color, el) {
   document.documentElement.style.setProperty('--accent-blue', color);
   document.querySelectorAll('.palette-dot').forEach(d => d.classList.remove('active'));
   if (el) el.classList.add('active');
 }
 
-// ==================== THEME ====================
 let isDark = true;
 function toggleTheme() {
   isDark = !isDark;
@@ -40,7 +54,6 @@ function toggleTheme() {
   }
 }
 
-// ==================== POLAROID DRAG ====================
 const polaroidEl = document.getElementById('polaroidEl');
 
 if (polaroidEl) {
@@ -69,7 +82,6 @@ document.addEventListener('mouseup', () => {
 
 }
 
-// ==================== CANVAS ENGINE ====================
 let activeTool = 'pen';
 let drawColor = '#ffffff';
 let brushSize = 4;
@@ -248,7 +260,6 @@ function downloadCanvas() {
   link.click();
 }
 
-// ==================== FULLSCREEN CANVAS ====================
 let fctx, fCanvas;
 let fIsDown = false, fSnapshot, fStartPos = {};
 
@@ -318,7 +329,6 @@ function downloadFullCanvas() {
   link.click();
 }
 
-// ==================== PAGE TRANSITION ====================
 const transition = document.getElementById("pageTransition");
 
 document.querySelectorAll("a").forEach(link => {

@@ -1,21 +1,38 @@
- // Lightbox
-  function openLightbox(wrap) {
-    const img = wrap.querySelector('img');
-    document.getElementById('lightboxImg').src = img.src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+ // Nav Burger
+function toggleNav() {
+  document.getElementById('navLinks')?.classList.toggle('open');
+  document.getElementById('hamburger')?.classList.toggle('open');
+}
 
-  function closeLightbox(e) {
-    if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+const _hs2 = document.createElement('style');
+_hs2.textContent = '.hamburger { display: none; }';
+document.head.appendChild(_hs2);
 
-  // Escape key closes lightbox
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLightbox();
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks')?.classList.remove('open');
+    document.getElementById('hamburger')?.classList.remove('open');
   });
+});
+ 
+// Lightbox
+function openLightbox(wrap) {
+  const img = wrap.querySelector('img');
+  document.getElementById('lightboxImg').src = img.src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Escape key closes lightbox
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
 
   // Theme toggle (fun extra)
 const toggle = document.getElementById('themeToggle');
@@ -35,23 +52,22 @@ if (toggle) {
   });
 }
 
-  // Scroll-reveal observer
-  const items = document.querySelectorAll('.achievement-item');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  items.forEach(el => {
-    el.style.animationPlayState = 'paused';
-    observer.observe(el);
+// Scroll-reveal observer
+const items = document.querySelectorAll('.achievement-item');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      observer.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.1 });
 
-// ==================== PAGE TRANSITION ====================
+items.forEach(el => {
+  el.style.animationPlayState = 'paused';
+  observer.observe(el);
+});
+
 const transition = document.getElementById("pageTransition");
 
 document.querySelectorAll("a").forEach(link => {

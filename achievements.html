@@ -5,21 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Achievements – Arpii</title>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles2.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav>
   <a href="index.html" class="nav-logo">Arpii - 202410715061</a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="achievements.html" class="active">Achievements</a></li>
     <li><a href="canvas.html">Canvas</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <span class="nav-icon" id="themeToggle">☀️</span>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+  <span></span><span></span><span></span>
+  </button>
+  </div>
 </nav>
 
 <!-- MAIN -->
@@ -71,7 +76,6 @@
       </div>
     </div>
 
-    <!-- Achievement 3 (bonus example) -->
     <div class="achievement-item">
       <div class="avatar-col">
         <div class="avatar">B</div>
@@ -106,6 +110,8 @@
       alt="Loading animation"
       title="Page loading">
   </div>
+
+<footer>Copyright © 2025 — All Right Reserved by Arpii.</footer>
 
 <script src="script2.js"></script>
 </body>
