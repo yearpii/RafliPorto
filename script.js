@@ -8,11 +8,8 @@ function toggleNav() {
   document.getElementById('hamburger')?.classList.toggle('open');
 }
 
-const _hs = document.createElement('style');
-_hs.textContent = '.hamburger { display: none; }';
-document.head.appendChild(_hs);
-
 document.addEventListener('DOMContentLoaded', () => {
+  
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('navLinks')?.classList.remove('open');
@@ -35,23 +32,31 @@ let isDark = true;
 function toggleTheme() {
   isDark = !isDark;
   const btn = document.querySelector('.theme-btn');
-  if (!isDark) {
-    document.documentElement.style.setProperty('--bg', '#f4f4f6');
-    document.documentElement.style.setProperty('--surface', '#ffffff');
-    document.documentElement.style.setProperty('--border', '#e0e0e8');
-    document.documentElement.style.setProperty('--text', '#111113');
-    document.documentElement.style.setProperty('--muted', '#666680');
-    document.documentElement.style.setProperty('--canvas-bg', '#e8e8f0');
-    btn.textContent = '🌙';
-  } else {
-    document.documentElement.style.setProperty('--bg', '#111113');
-    document.documentElement.style.setProperty('--surface', '#1a1a1e');
-    document.documentElement.style.setProperty('--border', '#2a2a30');
-    document.documentElement.style.setProperty('--text', '#e8e8ec');
-    document.documentElement.style.setProperty('--muted', '#888896');
-    document.documentElement.style.setProperty('--canvas-bg', '#1e1e24');
-    btn.textContent = '☀️';
-  }
+
+  btn.classList.remove('spinning');
+  void btn.offsetWidth;
+  btn.classList.add('spinning');
+  setTimeout(() => btn.classList.remove('spinning'), 500);
+
+  btn.textContent = isDark ? '☀️' : '🌙';
+
+  setTimeout(() => {
+    if (!isDark) {
+      document.documentElement.style.setProperty('--bg', '#f4f4f6');
+      document.documentElement.style.setProperty('--surface', '#ffffff');
+      document.documentElement.style.setProperty('--border', '#e0e0e8');
+      document.documentElement.style.setProperty('--text', '#111113');
+      document.documentElement.style.setProperty('--muted', '#666680');
+      document.documentElement.style.setProperty('--canvas-bg', '#e8e8f0');
+    } else {
+      document.documentElement.style.setProperty('--bg', '#111113');
+      document.documentElement.style.setProperty('--surface', '#1a1a1e');
+      document.documentElement.style.setProperty('--border', '#2a2a30');
+      document.documentElement.style.setProperty('--text', '#e8e8ec');
+      document.documentElement.style.setProperty('--muted', '#888896');
+      document.documentElement.style.setProperty('--canvas-bg', '#1e1e24');
+    }
+  }, 150);
 }
 
 const polaroidEl = document.getElementById('polaroidEl');
