@@ -9,13 +9,29 @@ function toggleNav() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('navLinks')?.classList.remove('open');
       document.getElementById('hamburger')?.classList.remove('open');
     });
   });
+
+  const achievements = document.querySelectorAll('.achievement-item');
+  if (achievements.length && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    achievements.forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  }
 });
 window.addEventListener('scroll', () => {
   const btn = document.getElementById('scrollTopBtn');
@@ -58,6 +74,28 @@ function toggleTheme() {
     }
   }, 150);
 }
+
+function openLightbox(wrap) {
+  const img = wrap?.querySelector('img');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightbox = document.getElementById('lightbox');
+  if (!img || !lightboxImg || !lightbox) return;
+  lightboxImg.src = img.src;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
 
 const polaroidEl = document.getElementById('polaroidEl');
 
